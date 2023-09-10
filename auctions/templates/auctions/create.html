@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Creatig New Listing</h2>
+   
+    <!-- info about the product  -->
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder=" title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control" id="description" placeholder="description">
+        </div>
+        <div class="form-group">
+            <label for="imageurl">image URL</label>
+            <input type="text" name="imageurl" class="form-control" id="imageurl" placeholder="image URL">
+        </div>
+        <div class="form-group">
+            <label for="price">price</label>
+            <input type="number" name="price" min="0" class="form-control" id="price" placeholder="Price">
+        </div>
+        <div class="form-group">
+            <label for="Category">Choose a Category:</label>
+            <select name="Category" id="Category">
+                {% for cat in categories %}
+                    <option value="{{cat}}">{{cat.categoryname}}</option>
+                {% endfor %}        
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Create New</button> 
+    </form>
+
+    
+{% endblock %}
